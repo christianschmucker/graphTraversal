@@ -1,9 +1,12 @@
+// SERVER FILE
+
 const express = require('express');
 const http = require('http');
 const fs = require('fs');
 var parse = require('csv-parse');
 const {bfsAll, generateGraph} = require("./graph");
 
+// parses the csv into and calls the graph generating function (from graph.js) 
 async function parseCsvAndGenerateGraph(){
   var graph = {};
   const fileContents = await fs.promises.readFile("./test.csv", "utf-8");
