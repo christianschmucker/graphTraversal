@@ -4,4 +4,4 @@ The graph data is being parsed from a csv file.
 Node JS is used for the backend processing. 
 
 ## Getting started
-To start the server run `npm run startApp` in a terminal.
+To start the server run `npm run startApp` in a terminal and open http://localhost:3000
