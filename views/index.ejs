@@ -1,0 +1,37 @@
+<link href="./css/style.css" rel="stylesheet" type="text/css">
+<div class="container">
+    <form action="/" method="POST">
+        <div class="center">
+            <h1>Find shortest path</h1>
+            
+              <div class="inputbox">
+                <input type="text" id="start" name="start" required>
+                <span>Start</span>
+              </div>
+              <div class="inputbox">
+                <input type="text" id="end" name="end" required>
+                <span>End</span>
+              </div>
+              <button type="submit" class="searchBtn">Search</button>
+            <h2 class="result"><%= (pathData) ? "Result:" : '' %></h2>
+            <% if (pathLength > -1) { %>
+                <p class="resultLength"><%= "Min path length: " + pathLength %></p>
+            <% } %>
+            <% if (err != '') { %>
+                <p class="resultLength"><%= err %></p> 
+            <% } %>
+            <% for (var i = 0; i < pathData.length;  i++ ) { %>
+                <p class="resultData"><%= pathData[i] %> </p>  
+            <% } %>
+
+        </div>
+        <div class="imageContainer">
+            <img src="graph.png" alt="graph.png" class="graphImage">
+        </div>
+
+        
+    </form>
+
+
+
+</div>

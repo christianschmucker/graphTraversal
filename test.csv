@@ -1,0 +1,10 @@
+a;1;g,b
+b;1;a,c,j
+c;2;d,e,i,b
+d;2;c,e,h,i
+e;2;c,f,d
+f;3;e
+g;1;a,c j
+h;2;d,e,i,b
+i;2;c,d,j
+j;2;i,b
