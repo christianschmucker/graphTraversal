@@ -1,3 +1,5 @@
+// GRAPH TRAVERSAL LOGIC
+
 class Node{
 	constructor(name, neighbours, zone){
   	this.name = name;
