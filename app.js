@@ -9,7 +9,7 @@ const {bfsAll, generateGraph} = require("./graph");
 // parses the csv into and calls the graph generating function (from graph.js) 
 async function parseCsvAndGenerateGraph(){
   var graph = {};
-  const fileContents = await fs.promises.readFile("./test.csv", "utf-8");
+  const fileContents = await fs.promises.readFile("./graphData.csv", "utf-8");
   const g = await new Promise((resolve, reject) => {
     parse(fileContents, {delimiter:";", trim: true}, function(err, rows) {
       if (err) {
