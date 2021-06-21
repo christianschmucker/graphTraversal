@@ -23,34 +23,35 @@ exports.generateGraph = function(data){
 }
 
 //collect all shortest paths by tracing back to the start node
-function findPaths(paths, path, prev, start, u){
-  if(u === start){
+function findPaths(paths, path, prev, start, currentNode){
+  if(currentNode === start){
   	path = path.slice();
   	paths.push(path);
   	return;
   }
 
-	for (var par of prev[u]){
-  	path.push(u);
+	for (var par of prev[currentNode]){
+  	path.push(graph[currentNode]); // add Node Object to the path
     findPaths(paths, path, prev, start, par);
     path.pop(par);
   }
   return;
 }
 
-// breadth first search for finding all shortest paths
+// breadth first search for finding all shortest paths 
+// returns e.g. [[node1, node2, node3], ...]
 exports.bfsAll = function(graph, s, e) {
     var start = graph[s];
     var end = graph[e];
     if(start == null || end == null)
       return [];
     if(s == e)
-      return [[start.name]];
+      return [[start]];
     var queue = [start];
     var visited = [];
     visited.push(start);
-    var prev = [];
-    var dist = [];
+    var prev = [];  // [Nodename : [previous nodenames], ...]
+    var dist = [];  // distances between each node and the start node [Nodename : distance, ...]
     // set all distances to maximum (infinity)
     for (const [key, value] of Object.entries(graph))
     	dist[key] = Infinity;
@@ -69,19 +70,18 @@ exports.bfsAll = function(graph, s, e) {
         	visited.push(graph[next]);
         	queue.push(graph[next]);
           prev[next] = [node.name];
-        }else if(dist[node.name] === dist[prev[next]]){
+        }else if(dist[node.name] == dist[prev[next]]){
         		prev[next].push(node.name);
         }
       }
     }
-
     // connect the paths
     paths = [];
     path = [];
     findPaths(paths, path, prev, start.name, end.name);
 
     for (var p of paths){
-    	p.push(start.name);
+    	p.push(start);
     	p.reverse();
     }
 

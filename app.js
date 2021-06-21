@@ -42,10 +42,14 @@ app.post('/', async (req, res) => {
   var start = req.body.start;
   var end = req.body.end;
   var graph = await parseCsvAndGenerateGraph();
-  var pathsArray = bfsAll(graph, start, end); // result paths after bfs
-  var pathsArrayFormatted = []; // array of formated paths [a -> b -> c, ...]
+  var pathsArray = bfsAll(graph, start, end); // result paths after bfs e.g. [[node1, node2, node3], ...]
+  console.log(pathsArray);
+
+  var pathsArrayFormatted = []; // array of formated paths as String ["a -> b -> c", ...]
+  // parses pathsArray into String format
   pathsArray.forEach(p => {
-    pathsArrayFormatted.push(p.join(" -> "));
+    pNames = p.map(node => node.name);
+    pathsArrayFormatted.push(pNames.join(" -> "));
   });
   var lengthOfPath = -1;
   var errorMsg = '';
@@ -54,7 +58,7 @@ app.post('/', async (req, res) => {
   else 
     errorMsg = "No path found";
     
-  console.log(pathsArray);
+  // reload page with new data. 
   res.render('index.ejs', { pathData : pathsArrayFormatted, pathLength : lengthOfPath, err : errorMsg});
 })
 
