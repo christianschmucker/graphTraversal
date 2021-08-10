@@ -62,4 +62,10 @@ app.post('/', async (req, res) => {
   res.render('index.ejs', { pathData : pathsArrayFormatted, pathLength : lengthOfPath, err : errorMsg});
 })
 
-app.listen(3000);
+const server = app.listen(3000);
+
+app.post('/stop', (req, res) => {
+  server.close(() => {
+    console.log("HTTP server closed");
+  })
+})

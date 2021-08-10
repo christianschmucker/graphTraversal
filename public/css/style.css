@@ -85,6 +85,21 @@ body {
     font-size: 1em;
     padding: 10px;
 }
+.stopBtn{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10em;
+    height: 3em;
+    background: #e32510;
+    color: #fff;
+    border: #fff;
+    border-radius: 10px;
+    font-size: 1em;
+    padding: 10px;
+}
+
 .result{
     padding-top: 10px;
 }
